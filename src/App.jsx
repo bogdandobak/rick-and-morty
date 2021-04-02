@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
 import { Switch } from 'react-router-dom';
-import { getCharacters } from './api/api';
 import { MainNavigation } from './components/MainNavigation';
 import { Characters } from './components/Characters';
 import { Episodes } from './components/Episodes';
@@ -10,7 +9,7 @@ import { WatchList } from './components/WatchList';
 import './App.scss';
 
 function App() {
-  console.log(getCharacters().info);
+  console.log('hi');
   return (
     <div className="App">
       <MainNavigation />

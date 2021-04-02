@@ -9,7 +9,7 @@ import { WatchList } from '../WatchList';
 import './MainNavigation.scss';
 
 export const MainNavigation = () => (
-  <Menu inverted size="big" className="menu">
+  <Menu inverted size="big">
     <Menu.Item link>
       <Link to={Characters.link({ list: 'characters' })}>
         Characters

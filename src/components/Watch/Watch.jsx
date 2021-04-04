@@ -4,7 +4,6 @@ import uniqid from 'uniqid';
 import { useLocalStorage } from '../../helpers';
 import { WatchInput } from '../WatchInput';
 import { WatchList } from '../WatchList';
-import '../HomePage/HomePage.scss';
 import './Watch.scss';
 
 const WatchRoute = Route({

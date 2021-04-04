@@ -17,7 +17,7 @@ export const Characters = CharactersRoute(() => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <div className="card">
         {characters.map((person) => (
           <Flippy

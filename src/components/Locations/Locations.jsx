@@ -9,12 +9,9 @@ const LocationsRoute = Route({
 }, ({ list }) => `/${list}`);
 
 export const Locations = LocationsRoute(() => {
-  /* const [pages, setPages] = useState({}); */
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
-    /* getLocations()
-      .then((resolve) => setPages(resolve.info)); */
     getLocations()
       .then((resolve) => setLocations(resolve.results));
   }, []);

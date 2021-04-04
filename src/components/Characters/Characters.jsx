@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-hoc';
-import { Pagination } from 'semantic-ui-react';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import { getCharacters } from '../../api/api';
 import './Characters.scss';
@@ -10,30 +9,15 @@ const CharactersRoute = Route({
 }, ({ list }) => `/${list}`);
 
 export const Characters = CharactersRoute(() => {
-  const [pages, setPages] = useState({});
   const [characters, setCharcters] = useState([]);
 
   useEffect(() => {
-    getCharacters()
-      .then((resolve) => setPages(resolve.info));
     getCharacters()
       .then((resolve) => setCharcters(resolve.results));
   }, []);
 
   return (
     <div>
-      <div className="pagination">
-        <Pagination
-          inverted
-          boundaryRange={0}
-          defaultActivePage={1}
-          ellipsisItem={null}
-          firstItem={null}
-          lastItem={null}
-          siblingRange={1}
-          totalPages={pages.pages}
-        />
-      </div>
       <div className="card">
         {characters.map((person) => (
           <Flippy
@@ -59,7 +43,7 @@ export const Characters = CharactersRoute(() => {
                 borderRadius: '20px',
               }}
             >
-              <p>
+              <p className="card__info">
                 {`Status: ${person.status}, character is: ${person.species}`}
               </p>
             </BackSide>

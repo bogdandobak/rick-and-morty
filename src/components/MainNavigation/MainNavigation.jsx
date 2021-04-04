@@ -5,11 +5,11 @@ import { Menu } from 'semantic-ui-react';
 import { Characters } from '../Characters';
 import { Episodes } from '../Episodes';
 import { Locations } from '../Locations';
-import { WatchList } from '../WatchList';
+import { Watch } from '../Watch';
 import './MainNavigation.scss';
 
 export const MainNavigation = () => (
-  <Menu inverted size="big">
+  <Menu secondary inverted size="large">
     <Menu.Item link>
       <Link to={Characters.link({ list: 'characters' })}>
         Characters
@@ -26,7 +26,7 @@ export const MainNavigation = () => (
       </Link>
     </Menu.Item>
     <Menu.Item link>
-      <Link to={WatchList.link({ list: 'watchList' })}>
+      <Link to={Watch.link({ list: 'watch' })}>
         My watch list
       </Link>
     </Menu.Item>

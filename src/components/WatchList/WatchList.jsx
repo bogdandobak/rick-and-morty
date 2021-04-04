@@ -1,70 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { Route } from 'react-router-hoc';
-import { Pagination } from 'semantic-ui-react';
-import Flippy, { FrontSide, BackSide } from 'react-flippy';
-import { getCharacters } from '../../api/api';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { WatchItem } from '../WachItem';
+import './WatchList.scss';
 
-const WatchListRoute = Route({
-  list: Route.params.enum('watchList'),
-}, ({ list }) => `/${list}`);
+export const WatchList = ({
+  watchData,
+  onRemove,
+  onComplete,
+}) => (
+  <ul className="watch-list">
+    {watchData.map((item) => (
+      <WatchItem
+        key={item.id}
+        item={item}
+        onComplete={onComplete}
+        onRemove={onRemove}
+      />
+    ))}
+  </ul>
+);
 
-export const WatchList = WatchListRoute(() => {
-  const [pages, setPages] = useState({});
-  const [characters, setCharcters] = useState([]);
-
-  useEffect(() => {
-    getCharacters()
-      .then((resolve) => setPages(resolve.info));
-    getCharacters()
-      .then((resolve) => setCharcters(resolve.results));
-  }, []);
-
-  return (
-    <div>
-      <div className="pagination">
-        <Pagination
-          inverted
-          boundaryRange={0}
-          defaultActivePage={1}
-          ellipsisItem={null}
-          firstItem={null}
-          lastItem={null}
-          siblingRange={1}
-          totalPages={pages.pages}
-        />
-      </div>
-      <div className="card">
-        {characters.map((person) => (
-          <Flippy
-            flipOnHover // default false
-            flipDirection="horizontal" // horizontal or vertical
-            style={{ width: '200px', height: '200px' }}
-          >
-            <FrontSide
-              style={{
-                backgroundImage: `url(${person.image})`,
-                backgroundSize: 'contain',
-                borderRadius: '20px',
-              }}
-            >
-              <p className="card__title">
-                {person.name}
-              </p>
-            </FrontSide>
-            <BackSide
-              style={{
-                backgroundImage: `url(${person.image})`,
-                backgroundSize: 'contain',
-                borderRadius: '20px',
-              }}
-            >
-              <p>
-                {`Status: ${person.status}, character is: ${person.species}`}
-              </p>
-            </BackSide>
-          </Flippy>
-        ))}
-      </div>
-    </div>
-  );
-});
+WatchList.propTypes = {
+  watchData: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
+  onRemove: PropTypes.func.isRequired,
+  onComplete: PropTypes.func.isRequired,
+};

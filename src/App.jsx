@@ -5,7 +5,7 @@ import { MainNavigation } from './components/MainNavigation';
 import { Characters } from './components/Characters';
 import { Episodes } from './components/Episodes';
 import { Locations } from './components/Locations';
-import { WatchList } from './components/WatchList';
+import { Watch } from './components/Watch';
 import { HomePage } from './components/HomePage';
 import './App.scss';
 
@@ -19,8 +19,7 @@ function App() {
         <Characters />
         <Episodes />
         <Locations />
-        <WatchList />
-
+        <Watch />
         <Redirect to={HomePage.link({ list: 'home' })} />
       </Switch>
     </div>
